@@ -8,11 +8,11 @@ const Hero: React.FC<HeroProps> = ({ onCandidatiClick }) => {
   return (
     <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
       {/* Background Image Placeholder with Overlay - Added top-12 for buffer */}
-      <div className="absolute top-8 inset-x-0 bottom-0 z-0">
+      <div className="absolute top-12 inset-x-0 bottom-0 z-0">
         <img 
           src="https://i.imgur.com/7PeSnLE.jpeg" 
           alt="Gym Atmosphere" 
-          className="w-full h-full object-cover opacity-80 grayscale"
+          className="w-full h-full object-cover opacity-80"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-brand-black via-brand-black/80 to-transparent"></div>
       </div>
