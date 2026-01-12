@@ -26,7 +26,8 @@ const Hero: React.FC<HeroProps> = ({ onCandidatiClick }) => {
           </div>
           
           <h1 className="font-display text-5xl md:text-8xl font-black uppercase leading-tight mb-8 tracking-tighter">
-            Costruisci un fisico <br />
+            Costruisci <br />
+            un fisico <br />
             <span className="gold-gradient italic">estetico serio.</span>
           </h1>
           
