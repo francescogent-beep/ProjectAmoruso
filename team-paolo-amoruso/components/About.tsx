@@ -12,7 +12,7 @@ const About: React.FC = () => {
               <img 
                 src="https://i.imgur.com/IoHpM0K.jpeg" 
                 alt="Paolo Amoruso Portrait" 
-                className="relative z-10 w-full grayscale contrast-125"
+                className="relative z-10 w-full grayscale"
               />
             </div>
           </div>
