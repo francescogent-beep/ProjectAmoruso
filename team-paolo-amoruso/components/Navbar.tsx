@@ -11,10 +11,10 @@ const Navbar: React.FC<NavbarProps> = ({ onCandidatiClick }) => {
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         <div className="flex items-center space-x-2">
           <div className="w-8 h-8 bg-brand-gold rounded-sm flex items-center justify-center font-display font-bold text-brand-black text-xl">
-            PA
+            TA
           </div>
           <span className="font-display font-bold tracking-tighter text-2xl uppercase italic">
-            TEAM <span className="text-brand-gold">PAOLO AMORUSO</span>
+            TEAM <span className="text-brand-gold">AMORUSO</span>
           </span>
         </div>
         
