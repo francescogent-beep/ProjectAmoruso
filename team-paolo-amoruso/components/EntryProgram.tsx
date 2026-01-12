@@ -18,7 +18,7 @@ const EntryProgram: React.FC = () => {
               <span className="text-white text-[10px] font-bold uppercase tracking-widest">Entry Level Program</span>
             </div>
             <h2 className="font-display text-4xl md:text-5xl font-black uppercase italic mb-6">
-              Programma Fisico Estetico <br />
+              Programma STRONG BASE <br />
               <span className="text-brand-gold">5 Settimane</span>
             </h2>
             <p className="text-zinc-400 mb-8 max-w-xl">
