@@ -27,7 +27,7 @@ const Navbar: React.FC<NavbarProps> = ({ onCandidatiClick }) => {
 
         <button 
           onClick={onCandidatiClick}
-          className="bg-zinc-100 text-brand-black px-6 py-2.5 text-xs font-bold uppercase tracking-widest hover:bg-brand-gold transition-all duration-300"
+          className="bg-zinc-100 text-brand-black px-4 md:px-6 py-2.5 text-[10px] md:text-xs font-bold uppercase tracking-widest hover:bg-brand-gold transition-all duration-300 whitespace-nowrap"
         >
           Candidati Ora
         </button>
@@ -35,5 +35,4 @@ const Navbar: React.FC<NavbarProps> = ({ onCandidatiClick }) => {
     </nav>
   );
 };
-
 export default Navbar;
