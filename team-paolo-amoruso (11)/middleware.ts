@@ -1,10 +1,4 @@
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
-
-export const config = {
-  matcher: '/:path*',
-};
-
-export default function middleware(request: NextRequest) {
-  return NextResponse.next();
+// Middleware disabled to centralize CSP in next.config.js and resolve Edge Function build errors.
+export default function middleware() {
+  return;
 }
