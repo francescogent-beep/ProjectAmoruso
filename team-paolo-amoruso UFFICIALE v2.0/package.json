@@ -1,0 +1,12 @@
+{
+  "name": "team-amoruso",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "prebuild": "node scripts/generate-sitemap.mjs",
+    "preview": "vite preview"
+  }
+}
