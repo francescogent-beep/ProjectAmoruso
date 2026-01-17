@@ -9,9 +9,8 @@ const Hero: React.FC<HeroProps> = ({ onCandidatiClick }) => {
   const words = SITE_CONTENT.hero.title.split(' ');
   
   return (
-    <section className="relative min-h-[85vh] md:min-h-[calc(100vh-80px)] flex items-center overflow-hidden bg-brand-black">
-      {/* Aspect ratio container to prevent CLS */}
-      <div className="absolute inset-0 z-0 overflow-hidden bg-zinc-950">
+    <section className="relative min-h-[calc(100vh-80px)] flex items-center overflow-hidden">
+      <div className="absolute inset-0 z-0">
         <img 
           src="https://i.imgur.com/7PeSnLE.jpeg" 
           alt="Paolo Amoruso IFBB Pro Athlete & Coach - Online Coaching Estetico" 
@@ -33,7 +32,7 @@ const Hero: React.FC<HeroProps> = ({ onCandidatiClick }) => {
             </span>
           </div>
           
-          <h1 className="font-display text-5xl md:text-8xl font-black uppercase leading-[1.05] mb-8 tracking-tight text-white">
+          <h1 className="font-display text-5xl md:text-8xl font-black uppercase leading-[1.05] mb-8 tracking-tight">
             {words[0]} <br />
             {words[1]} {words[2]} <br />
             <span className="gold-gradient italic pr-6 inline-block">{words[3]} {words[4]}</span>
