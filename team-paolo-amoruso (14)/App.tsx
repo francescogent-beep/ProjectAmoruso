@@ -29,16 +29,7 @@ const FAQPage = lazy(() => import('./pages/FAQPage.tsx'));
 const BlogPage = lazy(() => import('./pages/BlogPage.tsx'));
 const BlogPostPage = lazy(() => import('./pages/BlogPostPage.tsx'));
 
-const isProduction = window.location.hostname === 'teamamoruso.com' || window.location.hostname === 'www.teamamoruso.com';
-
-const getInitialPath = () => {
-  if (isProduction) {
-    return window.location.pathname;
-  } else {
-    const hash = window.location.hash;
-    return hash.startsWith('#') ? hash.slice(1) || '/' : '/';
-  }
-};
+const getInitialPath = () => window.location.pathname || '/';
 
 const LoadingBar = () => <div className="page-loader"></div>;
 
@@ -49,29 +40,29 @@ const App: React.FC = () => {
 
   useEffect(() => {
     const handlePopState = () => {
-      if (isProduction) {
-        setCurrentPath(window.location.pathname);
-      } else {
-        const hash = window.location.hash;
-        setCurrentPath(hash.startsWith('#') ? hash.slice(1) || '/' : '/');
-      }
+      setCurrentPath(window.location.pathname);
     };
 
     window.addEventListener('popstate', handlePopState);
-    if (!isProduction) {
-      window.addEventListener('hashchange', handlePopState);
-    }
-    
     return () => {
       window.removeEventListener('popstate', handlePopState);
-      window.removeEventListener('hashchange', handlePopState);
     };
   }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
     const siteTitle = " | TEAM AMORUSO";
+    const baseUrl = "https://www.teamamoruso.com";
     
+    // Dynamic Canonical Link Management
+    let canonicalLink = document.querySelector('link[rel="canonical"]');
+    if (!canonicalLink) {
+      canonicalLink = document.createElement('link');
+      canonicalLink.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonicalLink);
+    }
+    canonicalLink.setAttribute('href', `${baseUrl}${currentPath === '/' ? '' : currentPath}`);
+
     if (currentPath.startsWith('/blog/')) {
       const slug = currentPath.replace('/blog/', '');
       const post = SITE_CONTENT.blogPosts.find(p => p.slug === slug);
@@ -96,13 +87,8 @@ const App: React.FC = () => {
   }, [currentPath]);
 
   const navigate = (path: string) => {
-    if (isProduction) {
-      window.history.pushState({}, '', path);
-      setCurrentPath(path);
-    } else {
-      window.location.hash = path;
-      setCurrentPath(path);
-    }
+    window.history.pushState({}, '', path);
+    setCurrentPath(path);
   };
 
   const openApplication = () => setModalOpen(true);
