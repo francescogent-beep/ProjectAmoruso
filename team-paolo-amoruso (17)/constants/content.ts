@@ -84,7 +84,7 @@ export const SITE_CONTENT = {
       "Guida su cosa mangiare",
       "Inizi subito dopo l'acquisto",
       "Video per non sbagliare gli esercizi",
-      "Va bene sia per uomo che per donna"
+      "Disponibile sia per uomo che per donna"
     ],
     cta: "Prendi il Programma – €49",
     priceSubtext: "Paghi una volta sola",
