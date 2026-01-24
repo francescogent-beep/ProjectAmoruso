@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, Suspense, lazy } from 'react';
 import Navbar from './components/layout/Navbar.tsx';
 import Footer from './components/layout/Footer.tsx';
@@ -45,7 +44,8 @@ const getInitialPath = () => {
     if (!hash || hash === '#') return '/';
     return hash.replace(/^#/, '');
   }
-  return window.location.pathname === '' ? '/' : window.location.pathname;
+  // Fallback to pathname or root
+  return window.location.pathname || '/';
 };
 
 const LoadingBar = () => <div className="page-loader" aria-hidden="true"></div>;
