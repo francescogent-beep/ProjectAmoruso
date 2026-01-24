@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, Suspense, lazy } from 'react';
 import Navbar from './components/layout/Navbar.tsx';
 import Footer from './components/layout/Footer.tsx';
@@ -29,10 +30,22 @@ const FAQPage = lazy(() => import('./pages/FAQPage.tsx'));
 const BlogPage = lazy(() => import('./pages/BlogPage.tsx'));
 const BlogPostPage = lazy(() => import('./pages/BlogPostPage.tsx'));
 
+// Senior Logic: Detect if we should use Hash Routing (AI Studio) or Path Routing (Production)
+const isEmbed = () => {
+  try {
+    return window.self !== window.top;
+  } catch (e) {
+    return true;
+  }
+};
+
 const getInitialPath = () => {
-  const hash = window.location.hash;
-  if (!hash || hash === '#') return '/';
-  return hash.replace(/^#/, '');
+  if (isEmbed()) {
+    const hash = window.location.hash;
+    if (!hash || hash === '#') return '/';
+    return hash.replace(/^#/, '');
+  }
+  return window.location.pathname === '' ? '/' : window.location.pathname;
 };
 
 const LoadingBar = () => <div className="page-loader" aria-hidden="true"></div>;
@@ -43,42 +56,50 @@ const App: React.FC = () => {
   const [legalType, setLegalType] = useState<'privacy' | 'terms' | null>(null);
 
   useEffect(() => {
-    const handleHashChange = () => {
-      const path = getInitialPath();
-      setCurrentPath(path);
+    const handleLocationChange = () => {
+      setCurrentPath(getInitialPath());
     };
 
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    window.addEventListener('hashchange', handleLocationChange);
+    window.addEventListener('popstate', handleLocationChange);
+    
+    return () => {
+      window.removeEventListener('hashchange', handleLocationChange);
+      window.removeEventListener('popstate', handleLocationChange);
+    };
   }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
     const siteTitle = " | TEAM AMORUSO";
     
+    let pageTitle = "TEAM AMORUSO | IFBB Pro Online Coaching Elite";
+    
     if (currentPath.startsWith('/blog/')) {
       const slug = currentPath.replace('/blog/', '');
       const post = SITE_CONTENT.blogPosts.find(p => p.slug === slug);
-      if (post) {
-        document.title = post.title + siteTitle;
-        return;
+      if (post) pageTitle = post.title + siteTitle;
+    } else {
+      switch (currentPath) {
+        case '/coaching': pageTitle = "Online Coaching Elite" + siteTitle; break;
+        case '/processo': pageTitle = "Il Nostro Metodo Scientifico" + siteTitle; break;
+        case '/programmi': pageTitle = "Programmi & Protocolli Digitali" + siteTitle; break;
+        case '/risultati': pageTitle = "Trasformazioni & Risultati" + siteTitle; break;
+        case '/blog': pageTitle = "Blog & Risorse" + siteTitle; break;
+        case '/faq': pageTitle = "FAQ & Knowledge Base" + siteTitle; break;
+        case '/chi-sono': pageTitle = "Paolo Amoruso - IFBB Pro Athlete" + siteTitle; break;
       }
     }
-
-    switch (currentPath) {
-      case '/coaching': document.title = "Online Coaching Elite" + siteTitle; break;
-      case '/processo': document.title = "Il Nostro Metodo Scientifico" + siteTitle; break;
-      case '/programmi': document.title = "Programmi & Protocolli Digitali" + siteTitle; break;
-      case '/risultati': document.title = "Trasformazioni & Risultati" + siteTitle; break;
-      case '/blog': document.title = "Blog & Risorse" + siteTitle; break;
-      case '/faq': document.title = "FAQ & Knowledge Base" + siteTitle; break;
-      case '/chi-sono': document.title = "Paolo Amoruso - IFBB Pro Athlete" + siteTitle; break;
-      default: document.title = "TEAM AMORUSO | IFBB Pro Online Coaching Elite";
-    }
+    document.title = pageTitle;
   }, [currentPath]);
 
   const navigate = (path: string) => {
-    window.location.hash = path;
+    if (isEmbed()) {
+      window.location.hash = path;
+    } else {
+      window.history.pushState({}, '', path);
+      setCurrentPath(path);
+    }
   };
 
   const openApplication = () => setModalOpen(true);
