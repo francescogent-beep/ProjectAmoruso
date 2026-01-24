@@ -1,0 +1,11 @@
+/* Base styles handled by Tailwind CDN in index.html */
+
+@layer utilities {
+  .aspect-hero { aspect-ratio: 16/9; }
+  .aspect-portrait { aspect-ratio: 4/5; }
+  .aspect-square { aspect-ratio: 1/1; }
+}
+
+.custom-scrollbar::-webkit-scrollbar { width: 8px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: #0A0A0A; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: #D4AF37; }
