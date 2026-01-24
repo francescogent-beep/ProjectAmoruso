@@ -1,0 +1,27 @@
+import typography from '@tailwindcss/typography';
+
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {
+      fontFamily: { 
+        sans: ['Inter', 'sans-serif'], 
+        display: ['Oswald', 'sans-serif'] 
+      },
+      colors: { 
+        brand: { 
+          black: '#0A0A0A', 
+          gray: '#1A1A1A', 
+          gold: '#D4AF37' 
+        } 
+      }
+    },
+  },
+  plugins: [
+    typography,
+  ],
+}
