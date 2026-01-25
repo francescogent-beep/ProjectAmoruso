@@ -52,7 +52,7 @@ export const SITE_CONTENT = {
   },
   coaching: {
     title: "Coaching Online",
-    accent: "Cambia il tuo corpo",
+    accent: "FISICO SERIO",
     description: "Lavoriamo insieme sul tuo fisico. Un percorso fatto su misura per te, dove metto a tua disposizione tutto quello che ho imparato arrivando tra i Pro.",
     features: [
       { label: "Allenamento", desc: "Schede fatte apposta per te che cambiano con te" },
