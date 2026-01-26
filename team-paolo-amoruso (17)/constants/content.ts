@@ -76,7 +76,7 @@ export const SITE_CONTENT = {
   },
   entryProgram: {
     badge: "Per iniziare",
-    title: "Programma Fisico Estetico",
+    title: "Programma STRONG BASE",
     accent: "5 Settimane",
     description: "Perfetto se vuoi iniziare a muoverti da solo con un metodo serio. Ti do la base per allenarti bene e iniziare a vedere i primi cambiamenti.",
     features: [
