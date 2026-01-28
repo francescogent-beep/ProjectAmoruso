@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0A0A0A">
+    <meta name="description" content="Trasforma il tuo fisico con Paolo Amoruso, atleta IFBB Pro. Online coaching d'élite, programmi personalizzati e metodo scientifico per risultati estetici reali.">
+    
+    <!-- 1. Tailwind Engine (Ripristinato per funzionalità immediata) -->
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: { 
+              sans: ['Inter', 'sans-serif'], 
+              display: ['Oswald', 'sans-serif'] 
+            },
+            colors: { 
+              brand: { 
+                black: '#0A0A0A', 
+                gray: '#1A1A1A', 
+                gold: '#D4AF37' 
+              } 
+            }
+          }
+        }
+      }
+    </script>
+
+    <!-- 2. Stili Critici Inlined (Zero Latency Design) -->
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Oswald:wght@700&display=swap');
+
+      body { 
+        background-color: #0A0A0A;
+        color: white;
+        margin: 0;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .gold-gradient {
+        background: linear-gradient(135deg, #B38F00 0%, #D4AF37 35%, #FFF0A3 50%, #D4AF37 65%, #B38F00 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        color: #D4AF37;
+        display: inline-block;
+        padding-right: 0.15em; /* Previene il taglio delle lettere in italic */
+        margin-right: -0.15em;
+      }
+
+      .gold-metallic-bg {
+        background: linear-gradient(135deg, #D4AF37 0%, #FFF0A3 50%, #D4AF37 100%);
+        color: #0A0A0A !important;
+        font-weight: 900;
+        text-transform: uppercase;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .gold-metallic-bg:hover {
+        filter: brightness(1.1);
+        transform: scale(1.01);
+        box-shadow: 0 10px 30px -10px rgba(212, 175, 55, 0.4);
+      }
+
+      .page-loader { 
+        position: fixed; top: 0; left: 0; width: 100%; height: 3px; 
+        background-color: #D4AF37;
+        z-index: 9999; 
+        transform: scaleX(0); transform-origin: 0 50%; 
+        animation: loading 1.5s infinite ease-in-out; 
+      }
+      
+      @keyframes loading { 
+        0% { transform: scaleX(0); } 
+        50% { transform: scaleX(0.7); } 
+        100% { transform: scaleX(1); opacity: 0; } 
+      }
+
+      .custom-scrollbar::-webkit-scrollbar { width: 8px; }
+      .custom-scrollbar::-webkit-scrollbar-track { background: #0A0A0A; }
+      .custom-scrollbar::-webkit-scrollbar-thumb { background: #D4AF37; }
+
+      .shiny-gold-text {
+        text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+      }
+    </style>
+
+    <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@19.0.0",
+    "react-dom": "https://esm.sh/react-dom@19.0.0",
+    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
+    "react/jsx-runtime": "https://esm.sh/react@19.0.0/jsx-runtime",
+    "@google/genai": "https://esm.sh/@google/genai@1.37.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "fs": "https://esm.sh/fs@^0.0.1-security",
+    "path": "https://esm.sh/path@^0.12.7",
+    "url": "https://esm.sh/url@^0.11.4",
+    "vite": "https://esm.sh/vite@^7.3.1",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2",
+    "@tailwindcss/typography": "https://esm.sh/@tailwindcss/typography@^0.5.19"
+  }
+}
+</script>
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="preload" as="image" href="https://i.imgur.com/7PeSnLE.jpeg" fetchpriority="high">
+
+    <script>
+      window.process = { env: { NODE_ENV: 'production', API_KEY: '' } };
+    </script>
+
+    <title>TEAM AMORUSO | IFBB Pro Online Coaching Elite</title>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body class="bg-brand-black text-white selection:bg-brand-gold selection:text-brand-black">
+    <div id="root"></div>
+    <script type="module" src="index.tsx" defer></script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>
