@@ -29,13 +29,8 @@ const FAQPage = lazy(() => import('./pages/FAQPage.tsx'));
 const BlogPage = lazy(() => import('./pages/BlogPage.tsx'));
 const BlogPostPage = lazy(() => import('./pages/BlogPostPage.tsx'));
 
-// Senior Logic: Detect if we should use Hash Routing (AI Studio) or Path Routing (Production)
 const isEmbed = () => {
-  try {
-    return window.self !== window.top;
-  } catch (e) {
-    return true;
-  }
+  try { return window.self !== window.top; } catch (e) { return true; }
 };
 
 const getInitialPath = () => {
@@ -44,7 +39,6 @@ const getInitialPath = () => {
     if (!hash || hash === '#') return '/';
     return hash.replace(/^#/, '');
   }
-  // Fallback to pathname or root
   return window.location.pathname || '/';
 };
 
@@ -56,13 +50,9 @@ const App: React.FC = () => {
   const [legalType, setLegalType] = useState<'privacy' | 'terms' | null>(null);
 
   useEffect(() => {
-    const handleLocationChange = () => {
-      setCurrentPath(getInitialPath());
-    };
-
+    const handleLocationChange = () => setCurrentPath(getInitialPath());
     window.addEventListener('hashchange', handleLocationChange);
     window.addEventListener('popstate', handleLocationChange);
-    
     return () => {
       window.removeEventListener('hashchange', handleLocationChange);
       window.removeEventListener('popstate', handleLocationChange);
@@ -73,24 +63,70 @@ const App: React.FC = () => {
     window.scrollTo(0, 0);
     const siteTitle = " | TEAM AMORUSO";
     
-    let pageTitle = "TEAM AMORUSO | IFBB Pro Online Coaching Elite";
+    // SEO Dynamic Meta
+    let pageTitle = "PAOLO AMORUSO | TEAM AMORUSO | IFBB Pro Online Coaching Elite";
+    let description = "Trasforma il tuo fisico con Paolo Amoruso, atleta IFBB Pro. Online coaching d'élite, programmi personalizzati e metodo scientifico per risultati estetici reali.";
     
     if (currentPath.startsWith('/blog/')) {
       const slug = currentPath.replace('/blog/', '');
       const post = SITE_CONTENT.blogPosts.find(p => p.slug === slug);
-      if (post) pageTitle = post.title + siteTitle;
+      if (post) {
+        pageTitle = `${post.title} | Team Amoruso Blog`;
+        description = post.excerpt;
+      }
     } else {
       switch (currentPath) {
-        case '/coaching': pageTitle = "Online Coaching Elite" + siteTitle; break;
-        case '/processo': pageTitle = "Il Nostro Metodo Scientifico" + siteTitle; break;
-        case '/programmi': pageTitle = "Programmi & Protocolli Digitali" + siteTitle; break;
-        case '/risultati': pageTitle = "Trasformazioni & Risultati" + siteTitle; break;
-        case '/blog': pageTitle = "Blog & Risorse" + siteTitle; break;
-        case '/faq': pageTitle = "FAQ & Knowledge Base" + siteTitle; break;
-        case '/chi-sono': pageTitle = "Paolo Amoruso - IFBB Pro Athlete" + siteTitle; break;
+        case '/coaching': 
+          pageTitle = "Online Coaching Elite Paolo Amoruso" + siteTitle; 
+          description = "Percorso di coaching online d'élite con Paolo Amoruso. Trasformazione fisica professionale per atleti e ambiziosi.";
+          break;
+        case '/processo': 
+          pageTitle = "Metodo Scientifico Paolo Amoruso" + siteTitle; 
+          description = "Scopri il metodo di allenamento e nutrizione di Paolo Amoruso, basato sulla scienza e l'esperienza IFBB Pro.";
+          break;
+        case '/programmi': 
+          pageTitle = "Programmi & Protocolli Digitali" + siteTitle; 
+          description = "Protocolli di allenamento digitali Team Amoruso. Inizia la tua trasformazione in autonomia con basi solide.";
+          break;
+        case '/risultati': 
+          pageTitle = "Risultati e Trasformazioni Team Amoruso" + siteTitle; 
+          description = "Guarda le trasformazioni reali dei membri del Team Amoruso. Risultati concreti senza compromessi.";
+          break;
+        case '/blog': 
+          pageTitle = "Blog e Consigli d'Elite" + siteTitle; 
+          description = "Approfondimenti su allenamento, nutrizione e mindset da parte di Paolo Amoruso IFBB Pro.";
+          break;
+        case '/faq': 
+          pageTitle = "Domande Frequenti Knowledge Base" + siteTitle; 
+          description = "Tutto quello che devi sapere sul coaching online e i programmi Team Amoruso.";
+          break;
+        case '/chi-sono': 
+          pageTitle = "Chi è Paolo Amoruso IFBB Pro" + siteTitle; 
+          description = "La storia e la filosofia di Paolo Amoruso, atleta professionista IFBB Pro e fondatore del Team Amoruso.";
+          break;
       }
     }
+    
+    // Update DOM
     document.title = pageTitle;
+    
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) metaDesc.setAttribute('content', description);
+    
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) ogTitle.setAttribute('content', pageTitle);
+    
+    const ogDesc = document.querySelector('meta[property="og:description"]');
+    if (ogDesc) ogDesc.setAttribute('content', description);
+    
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonical);
+    }
+    canonical.setAttribute('href', `https://www.teamamoruso.com${currentPath === '/' ? '' : currentPath}`);
+    
   }, [currentPath]);
 
   const navigate = (path: string) => {
@@ -153,7 +189,6 @@ const App: React.FC = () => {
   return (
     <div className="min-h-screen font-sans selection:bg-brand-gold selection:text-brand-black bg-brand-black flex flex-col">
       <Navbar onCandidatiClick={openApplication} onNavigate={navigate} currentPath={currentPath} />
-      
       <div className="pt-20 flex flex-col flex-1">
         {currentPath !== '/' && (
           <Breadcrumbs currentPath={currentPath} onNavigate={navigate} />
@@ -162,9 +197,7 @@ const App: React.FC = () => {
           {renderContent()}
         </main>
       </div>
-
       <Footer onLegalClick={openLegal} onNavigate={navigate} />
-      
       {isModalOpen && <ApplicationModal onClose={closeModal} />}
       {legalType && <LegalModal type={legalType} onClose={closeLegal} />}
     </div>
