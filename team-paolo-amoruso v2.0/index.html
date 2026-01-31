@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="it" style="background-color: #000; -webkit-tap-highlight-color: transparent;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#000000">
+    
+    <!-- Instant Black Shell & Critical Layout -->
+    <style>
+      html, body { 
+        background-color: #000 !important; 
+        color: #fff;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden;
+      }
+      #root { 
+        background-color: #000;
+        min-height: 100vh;
+      }
+      .hero-shell {
+        position: relative;
+        width: 100%;
+        height: 85vh;
+        background-color: #000;
+        overflow: hidden;
+      }
+      .hero-bg-shell {
+        position: absolute;
+        inset: 0;
+        background-color: #000;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        opacity: 0;
+        animation: fadeIn 0.4s ease-out forwards;
+      }
+      @keyframes fadeIn { from { opacity: 0; } to { opacity: 0.6; } }
+      @media (max-width: 640px) { .hero-bg-shell { background-image: url("https://i.imgur.com/7PeSnLEl.jpg"); } }
+      @media (min-width: 641px) { .hero-bg-shell { background-image: url("https://i.imgur.com/7PeSnLEh.jpg"); } }
+      .hero-overlay-shell {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to right, #000, rgba(0, 0, 0, 0.9) 30%, rgba(0, 0, 0, 0.2));
+      }
+    </style>
+    
+    <title>PAOLO AMORUSO | TEAM AMORUSO | IFBB Pro Online Coaching Elite</title>
+    <meta name="description" content="Trasforma il tuo fisico con Paolo Amoruso, atleta IFBB Pro. Online coaching d'élite, programmi personalizzati e metodo scientifico per risultati estetici reali.">
+    
+    <link rel="preconnect" href="https://i.imgur.com" crossorigin>
+    
+    <!-- Responsive LCP Image Preload - Fixes discovery delay -->
+    <link rel="preload" as="image" 
+      href="https://i.imgur.com/7PeSnLEh.jpg" 
+      imagesrcset="https://i.imgur.com/7PeSnLEl.jpg 640w, https://i.imgur.com/7PeSnLEh.jpg 1280w, https://i.imgur.com/7PeSnLE.jpg 1920w" 
+      imagesizes="100vw" 
+      fetchpriority="high">
+
+    <script>
+      (function() {
+        const isDev = /localhost|aistudio|usercontent|blob|about|webcontainer|netlify\.app|vercel\.app/.test(window.location.hostname) || window.location.protocol === 'blob:';
+        if (isDev) {
+          const script = document.createElement('script');
+          script.src = "https://cdn.tailwindcss.com?plugins=typography";
+          script.defer = true;
+          script.onload = function() {
+            tailwind.config = {
+              theme: {
+                extend: {
+                  fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'], display: ['Oswald', 'Impact', 'sans-serif'] },
+                  colors: { brand: { black: '#0A0A0A', gray: '#1A1A1A', gold: '#D4AF37' } }
+                }
+              }
+            };
+          };
+          document.head.appendChild(script);
+        }
+      })();
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Oswald:wght@700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+
+    <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@19.0.0",
+    "react-dom": "https://esm.sh/react-dom@19.0.0",
+    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
+    "react/jsx-runtime": "https://esm.sh/react@19.0.0/jsx-runtime",
+    "@google/genai": "https://esm.sh/@google/genai@1.37.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "fs": "https://esm.sh/fs@^0.0.1-security",
+    "path": "https://esm.sh/path@^0.12.7",
+    "url": "https://esm.sh/url@^0.11.4",
+    "vite": "https://esm.sh/vite@^7.3.1",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2",
+    "@tailwindcss/typography": "https://esm.sh/@tailwindcss/typography@^0.5.19"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body style="background-color: #000;">
+    <div id="root">
+        <!-- Static placeholder for instant paint -->
+        <div class="hero-shell" aria-hidden="true">
+            <div class="hero-bg-shell"></div>
+            <div class="hero-overlay-shell"></div>
+        </div>
+    </div>
+    <script type="module" src="index.tsx"></script>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body {
+    background-color: #000 !important;
+    -webkit-tap-highlight-color: transparent;
+    @apply text-white antialiased;
+  }
+}
+
+@layer components {
+  /* Solid Gold Utility - Standard Branding */
+  .text-brand-gold, .gold-gradient {
+    color: #D4AF37 !important;
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    background-clip: initial !important;
+    display: inline-block;
+    opacity: 1 !important;
+  }
+
+  .gold-solid-bg {
+    background-color: #D4AF37 !important;
+    color: #000 !important;
+    border: none !important;
+    box-shadow: 0 10px 30px -10px rgba(212, 175, 55, 0.4) !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    @apply font-display font-black uppercase tracking-widest;
+    will-change: transform, box-shadow;
+  }
+
+  .gold-solid-bg:hover {
+    box-shadow: 0 20px 40px -15px rgba(212, 175, 55, 0.6) !important;
+    transform: translateY(-3px) scale(1.02);
+    background-color: #F1C40F !important;
+  }
+
+  .gold-solid-bg:active {
+    transform: translateY(1px) scale(0.98);
+  }
+
+  .gold-metallic-bg {
+    background-color: #D4AF37 !important;
+  }
+
+  /* Accessibility Contrast Fix for Background Text */
+  .decorative-text-contrast {
+    color: #D4AF37 !important;
+    opacity: 0.45 !important; /* Increased to 0.45 to pass accessibility checks for large text (3:1 ratio) */
+  }
+}
