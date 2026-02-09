@@ -90,6 +90,15 @@ const App: React.FC = () => {
     document.title = pageTitle;
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) metaDesc.setAttribute('content', description);
+
+    // Update Canonical Tag
+    let canonicalLink = document.querySelector('link[rel="canonical"]');
+    if (!canonicalLink) {
+      canonicalLink = document.createElement('link');
+      canonicalLink.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonicalLink);
+    }
+    canonicalLink.setAttribute('href', `https://teamamoruso.com${currentPath === '/' ? '' : currentPath}`);
   }, [currentPath]);
 
   const navigate = (path: string) => {
