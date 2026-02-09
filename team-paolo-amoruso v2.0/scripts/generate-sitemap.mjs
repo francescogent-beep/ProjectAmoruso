@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 
 const date = new Date().toISOString().split('T')[0];
-const BASE_URL = 'https://www.teamamoruso.com';
+const BASE_URL = 'https://teamamoruso.com';
 
 const staticRoutes = [
   { path: '/', priority: '1.0', changefreq: 'monthly' },
